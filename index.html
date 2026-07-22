@@ -76,11 +76,11 @@
     letter-spacing:-.01em;
     line-height:1.2;
   }
-  .hero p.sub{margin:0;color:#bae6fd;font-size:.95rem}
+  .hero p.sub{margin:0;color:#e2e8f0;font-size:.95rem}
   .chip{
-    display:inline-block;margin-top:14px;padding:5px 12px;border-radius:999px;
-    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
-    font-size:.8rem;letter-spacing:.02em;backdrop-filter:blur(6px);
+    display:inline-block;margin-top:14px;padding:6px 13px;border-radius:999px;
+    background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.34);
+    color:#f8fafc;font-weight:600;font-size:.8rem;letter-spacing:.02em;backdrop-filter:blur(6px);
   }
   .hero-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
   .icon-btn{
@@ -129,7 +129,7 @@
     box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent);
   }
   .gt-row{display:flex;gap:10px;align-items:center}
-  .gt-row input{flex:1}
+  .gt-row input{flex:1;min-width:0}
   .unit{
     font-size:.8rem;font-weight:700;color:var(--muted);
     background:var(--card-soft);border:1px solid var(--border);
@@ -244,6 +244,45 @@
     margin:18px auto 0;max-width:720px;font-size:.78rem;color:var(--muted);line-height:1.6;
   }
   .note strong{color:var(--text)}
+
+  /* ---------- Mobil düzen ---------- */
+  @media(max-width:559px){
+    .hero{padding:24px 16px 74px}
+    .hero-top{flex-direction:column;align-items:stretch;gap:14px}
+    .hero-actions{justify-content:stretch}
+    .hero-actions .icon-btn{flex:1 1 calc(50% - 4px);justify-content:center;padding:11px 12px}
+    .wrap{padding:0 16px 40px}
+    .card{padding:18px}
+
+    /* Sonuç tablosunu kart düzenine çevir */
+    .table-scroll{overflow-x:visible}
+    table{min-width:0}
+    thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    table,tbody,tr,td{display:block;width:100%}
+    tbody tr{
+      border:1px solid var(--border);border-radius:12px;
+      background:var(--card-soft);padding:4px 14px;margin-bottom:12px;
+    }
+    tbody tr:last-child{margin-bottom:0}
+    tbody tr:hover td{background:transparent}
+    td{
+      display:flex;justify-content:space-between;align-items:center;gap:14px;
+      padding:11px 0;border-bottom:1px solid var(--border);
+      text-align:right;white-space:normal;
+    }
+    td:last-child{border-bottom:none}
+    td::before{
+      content:attr(data-label);text-align:left;flex:none;
+      font-size:.72rem;font-weight:700;letter-spacing:.05em;
+      text-transform:uppercase;color:var(--muted);
+    }
+    td:first-child{
+      display:block;font-size:1rem;font-weight:700;
+      padding:8px 0 11px;border-bottom:2px solid var(--border);text-align:left;
+    }
+    td:first-child::before{content:none}
+    td.net{font-size:1.05rem}
+  }
 
   @media print{
     .hero{background:#fff;color:#000;padding:16px 0 8px}
@@ -426,9 +465,9 @@
     }
     ilk += '</div>';
     tr.innerHTML = '<td>' + ilk + '</td>' +
-                   '<td class="base" data-c="taban">$0.00</td>' +
-                   '<td class="inc" data-c="artirim">0%</td>' +
-                   '<td class="net" data-c="net">$0.00</td>';
+                   '<td class="base" data-c="taban" data-label="Taban Ücret">$0.00</td>' +
+                   '<td class="inc" data-c="artirim" data-label="Artırım">0%</td>' +
+                   '<td class="net" data-c="net" data-label="Net Ücret">$0.00</td>';
     tr.dataset.hizmet = hizmet;
     tbody.appendChild(tr);
   });
