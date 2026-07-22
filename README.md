@@ -3,7 +3,7 @@
 Kılavuzluk, römorkaj ve palamar hizmetleri için **1 Şubat 2026 – 31 Ocak 2027** dönemi tarifesine göre
 anlık ücret hesaplaması yapan, tek dosyalık (bağımlılıksız) web uygulaması.
 
-🔗 **Canlı sürüm:** https://mkptheCapt.github.io/kilavuzluk-hizmetleri-tarife-hesaplama/
+🔗 **Canlı sürüm:** https://mkpthecapt.github.io/kilavuzluk-hizmetleri-tarife-hesaplama/
 
 ## Özellikler
 
