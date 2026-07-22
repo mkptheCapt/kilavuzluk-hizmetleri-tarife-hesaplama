@@ -128,13 +128,19 @@
     outline:none;border-color:var(--accent);
     box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent);
   }
-  .gt-row{display:flex;gap:10px;align-items:center}
-  .gt-row input{flex:1;min-width:0}
-  .unit{
-    font-size:.8rem;font-weight:700;color:var(--muted);
-    background:var(--card-soft);border:1px solid var(--border);
-    padding:11px 14px;border-radius:10px;
+  /* Groston (dar kutu) + Gemi Tipi açılır menü aynı satırda */
+  .gt-tip-row{display:flex;gap:12px;align-items:flex-start}
+  .gt-tip-row .lbl{
+    display:block;margin-bottom:8px;font-weight:600;white-space:nowrap;
+    font-size:var(--ui-font-size);color:var(--ui-color);
   }
+  .gt-col{flex:none;display:flex;flex-direction:column}
+  .gt-col input{align-self:flex-start;width:calc(6ch + 32px)}
+  .gt-col input::-webkit-outer-spin-button,
+  .gt-col input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .gt-col input[type=number]{-moz-appearance:textfield;appearance:textfield}
+  .tip-col{flex:1;min-width:0;display:flex;flex-direction:column}
+  .gt-tip-row input[type=number],.gt-tip-row .dd-trigger{padding:12px}
 
   /* seçenek kutuları */
   .options{display:grid;grid-template-columns:1fr;gap:10px}
@@ -326,8 +332,8 @@
     .field{margin-bottom:10px}
     label.lbl,.field .lbl{margin-bottom:5px;font-size:.85rem}
     input[type=number],select{padding:9px 11px}
-    .unit{padding:9px 12px}
     .dd-trigger{padding:9px 12px}
+    .gt-tip-row input[type=number],.gt-tip-row .dd-trigger{padding:9px 11px}
     .dd-ico svg{width:20px;height:20px}
 
     .options{grid-template-columns:1fr 1fr;gap:8px}
@@ -370,7 +376,8 @@
     .card h2{margin:0 0 6px;font-size:.66rem}
     .field{margin-bottom:7px}
     label.lbl,.field .lbl{margin-bottom:4px;font-size:.82rem}
-    input[type=number],select,.unit,.dd-trigger{padding:7px 11px}
+    input[type=number],select,.dd-trigger{padding:7px 11px}
+    .gt-tip-row input[type=number],.gt-tip-row .dd-trigger{padding:7px 10px}
     .opt{padding:7px 10px;font-size:.78rem}
     .dd-ico svg{width:19px;height:19px}
     td{padding:5px 4px;font-size:.8rem}
@@ -425,24 +432,22 @@
     <section class="card">
       <h2>Gemi ve Sefer Bilgileri</h2>
 
-      <div class="field">
-        <label class="lbl" for="gt">Gemi Grostonu (GT)</label>
-        <div class="gt-row">
-          <input type="number" id="gt" value="1999" min="1" step="1" inputmode="numeric" autocomplete="off">
-          <span class="unit">GT</span>
+      <div class="field gt-tip-row">
+        <div class="gt-col">
+          <label class="lbl" for="gt">Groston (GT)</label>
+          <input type="number" id="gt" value="1999" min="1" max="999999" step="1" inputmode="numeric" autocomplete="off">
         </div>
-      </div>
-
-      <div class="field">
-        <span class="lbl" id="gemiTipiLbl">Gemi Tipi</span>
-        <div class="dropdown" id="shipDropdown">
-          <button type="button" class="dd-trigger" id="ddTrigger"
-                  aria-haspopup="listbox" aria-expanded="false" aria-labelledby="gemiTipiLbl ddValue">
-            <span class="dd-ico" id="ddIco" aria-hidden="true"></span>
-            <span class="dd-value" id="ddValue"></span>
-            <span class="dd-caret" aria-hidden="true">▾</span>
-          </button>
-          <ul class="dd-menu" id="ddMenu" role="listbox" aria-labelledby="gemiTipiLbl" tabindex="-1"></ul>
+        <div class="tip-col">
+          <span class="lbl" id="gemiTipiLbl">Gemi Tipi</span>
+          <div class="dropdown" id="shipDropdown">
+            <button type="button" class="dd-trigger" id="ddTrigger"
+                    aria-haspopup="listbox" aria-expanded="false" aria-labelledby="gemiTipiLbl ddValue">
+              <span class="dd-ico" id="ddIco" aria-hidden="true"></span>
+              <span class="dd-value" id="ddValue"></span>
+              <span class="dd-caret" aria-hidden="true">▾</span>
+            </button>
+            <ul class="dd-menu" id="ddMenu" role="listbox" aria-labelledby="gemiTipiLbl" tabindex="-1"></ul>
+          </div>
         </div>
       </div>
 
