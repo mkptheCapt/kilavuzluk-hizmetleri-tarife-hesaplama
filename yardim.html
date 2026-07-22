@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yardım · Kılavuzluk, Römorkaj ve Palamar Hizmetleri Hesaplama Modülü</title>
+<meta name="description" content="Kılavuzluk, römorkaj ve palamar hizmetleri ücret hesaplama modülü için detaylı kullanım kılavuzu ve yardım bilgileri.">
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
+<style>
+  :root{
+    --bg:#eef2f7; --card:#ffffff; --card-soft:#f8fafc; --border:#e2e8f0;
+    --text:#1e293b; --muted:#64748b; --accent:#0284c7; --accent-soft:#e0f2fe;
+    --ok:#16a34a; --warn:#db2777;
+    --grad-1:#0f172a; --grad-2:#075985;
+    --shadow:0 10px 30px -12px rgba(15,23,42,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0b1220; --card:#111c2f; --card-soft:#0f1a2c; --border:#22314b;
+      --text:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8; --accent-soft:#0c2b3f;
+      --ok:#4ade80; --warn:#f472b6; --shadow:0 10px 30px -12px rgba(0,0,0,.6);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent)}
+
+  .hero{
+    background:linear-gradient(135deg,var(--grad-1) 0%,var(--grad-2) 100%);
+    color:#f1f5f9; padding:34px 20px 30px;
+  }
+  .hero-inner{max-width:900px;margin:0 auto}
+  .back{
+    display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+    color:#e2e8f0;font-size:.85rem;font-weight:600;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);
+    padding:7px 12px;border-radius:10px;margin-bottom:18px;transition:.18s;
+  }
+  .back:hover{background:rgba(255,255,255,.22);color:#fff}
+  .hero h1{
+    margin:0;font-size:clamp(1.25rem,3.4vw,1.9rem);font-weight:800;
+    letter-spacing:-.01em;line-height:1.25;
+  }
+  .hero h1 .mkp{color:#7dd3fc;font-weight:700}
+  .hero p.sub{margin:10px 0 0;color:#cbd5e1;font-size:.95rem;max-width:60ch}
+
+  .wrap{max-width:900px;margin:0 auto;padding:24px 20px 60px}
+
+  /* İçindekiler */
+  .toc{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    box-shadow:var(--shadow);padding:18px 20px;margin:0 0 26px;
+  }
+  .toc h2{margin:0 0 12px;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:26px}
+  .toc li{margin:4px 0;break-inside:avoid}
+  .toc a{text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+
+  section.card{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    box-shadow:var(--shadow);padding:22px 24px;margin:0 0 20px;scroll-margin-top:16px;
+  }
+  section.card > h2{
+    margin:0 0 14px;font-size:1.15rem;font-weight:800;color:var(--text);
+    display:flex;align-items:center;gap:10px;
+  }
+  section.card > h2 .num{
+    flex:none;width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;
+  }
+  h3{margin:18px 0 6px;font-size:1rem;font-weight:700;color:var(--text)}
+  p{margin:8px 0}
+  ul,ol.steps{margin:8px 0;padding-left:22px}
+  li{margin:5px 0}
+  code,.kbd{
+    background:var(--card-soft);border:1px solid var(--border);border-radius:6px;
+    padding:1px 6px;font-family:"Cascadia Code",Consolas,Menlo,monospace;font-size:.88em;
+  }
+  .formula{
+    background:var(--card-soft);border:1px solid var(--border);border-left:4px solid var(--accent);
+    border-radius:8px;padding:12px 14px;font-family:Consolas,Menlo,monospace;font-size:.92rem;
+    overflow-x:auto;margin:12px 0;
+  }
+  .note-box{
+    background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);
+    border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.94rem;
+  }
+  .warn-box{
+    background:color-mix(in srgb,var(--warn) 10%,transparent);
+    border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);
+    border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.94rem;
+  }
+  .tag{
+    display:inline-block;background:var(--accent-soft);color:var(--accent);
+    border-radius:6px;padding:1px 8px;font-size:.82rem;font-weight:700;
+  }
+
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0}
+  table{width:100%;border-collapse:collapse;min-width:460px;font-size:.92rem}
+  th,td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--border)}
+  th{color:var(--muted);font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;font-weight:700;background:var(--card-soft)}
+  th:first-child,td:first-child{text-align:left;font-weight:600}
+  td{font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:var(--card-soft)}
+
+  .btnrow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+  .btnrow a{
+    display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+    background:var(--card-soft);border:1px solid var(--border);color:var(--text);
+    padding:10px 16px;border-radius:10px;font-weight:600;font-size:.9rem;transition:.18s;
+  }
+  .btnrow a:hover{border-color:var(--accent);color:var(--accent)}
+
+  footer{
+    max-width:900px;margin:0 auto;padding:10px 20px 46px;text-align:center;
+    color:var(--muted);font-size:.85rem;
+  }
+  footer strong{color:var(--text)}
+
+  @media(max-width:560px){
+    .toc ol{columns:1}
+    section.card{padding:18px 16px}
+    .hero{padding:24px 16px 24px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <a class="back" href="index.html"><span aria-hidden="true">←</span><span>Uygulamaya dön</span></a>
+    <h1>Kılavuzluk, Römorkaj ve Palamar Hizmetleri Hesaplama Modülü <span class="mkp">_mKp (2026)</span></h1>
+    <p class="sub">Bu sayfa, hesaplama modülünün tüm alanlarını, hesaplama kurallarını ve tarife
+       verilerini ayrıntılı biçimde açıklayan kullanım kılavuzudur.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <nav class="toc" aria-label="İçindekiler">
+    <h2>İçindekiler</h2>
+    <ol>
+      <li><a href="#genel">Genel Bakış</a></li>
+      <li><a href="#kullanim">Adım Adım Kullanım</a></li>
+      <li><a href="#alanlar">Alanların Açıklaması</a></li>
+      <li><a href="#kural">Hesaplama Kuralı</a></li>
+      <li><a href="#tarife">Tarife Verileri</a></li>
+      <li><a href="#artirim">Artırımlar (Kat Sayılar)</a></li>
+      <li><a href="#sonuc">Sonuç Tablosu ve Toplam</a></li>
+      <li><a href="#butonlar">Butonlar ve Çıktı</a></li>
+      <li><a href="#gorunum">Görünüm Ayarları</a></li>
+      <li><a href="#mobil">Mobil / Tablet Kullanımı</a></li>
+      <li><a href="#ornek">Örnek Hesaplama</a></li>
+      <li><a href="#sss">Sık Sorulan Sorular</a></li>
+      <li><a href="#belgeler">Belgeler ve Yasal Dayanak</a></li>
+      <li><a href="#uyari">Yasal Uyarı</a></li>
+    </ol>
+  </nav>
+
+  <section class="card" id="genel">
+    <h2><span class="num">1</span>Genel Bakış</h2>
+    <p>Bu modül; bir geminin <strong>groston (GT)</strong> değeri, <strong>gemi tipi</strong> ve
+       <strong>sefer koşullarına</strong> göre <strong>kılavuzluk, römorkaj, palamar</strong> ve
+       <strong>etap seyri</strong> hizmetlerinin ücretlerini anlık olarak hesaplar ve genel toplamı verir.</p>
+    <p>Hesaplamalar <span class="tag">1 Şubat 2026 – 31 Ocak 2027</span> dönemi tarifesine göre ve
+       <strong>ABD doları (USD)</strong> cinsinden yapılır. Uygulama tek bir sayfadan oluşur; kurulum
+       gerektirmez, girdi değiştikçe sonuçlar otomatik güncellenir.</p>
+    <div class="note-box">Alanların herhangi birini değiştirdiğinizde “Hesapla” gibi bir düğmeye
+       basmanıza gerek yoktur; sonuçlar ve genel toplam anında yeniden hesaplanır.</div>
+  </section>
+
+  <section class="card" id="kullanim">
+    <h2><span class="num">2</span>Adım Adım Kullanım</h2>
+    <ol class="steps">
+      <li><strong>Gemi Grostonu (GT)</strong> alanına geminin groston değerini yazın (örn. <code>1999</code>).</li>
+      <li><strong>Gemi Tipi</strong> açılır menüsünü açıp uygun tipi seçin (Kabotaj Hattı, Yolcu/Ro-Pax/Ro-Ro/Araba Taşıyıcı, Konteyner Gemileri veya Diğer Gemiler).</li>
+      <li>Geçerliyse <strong>Sefer Koşulları</strong>ndan “Tehlikeli Madde Taşıyor” ve/veya “Resmi Tatil / Hafta Sonu” kutularını işaretleyin.</li>
+      <li>Römorkaj satırındaki <strong>adet</strong> menüsünden kullanılacak <strong>römorkör sayısını</strong> (0–9) seçin.</li>
+      <li>Sefere <strong>etap seyri</strong> dahilse, Etap Seyri satırındaki <strong>onay kutusunu</strong> işaretli bırakın; değilse işareti kaldırın.</li>
+      <li><strong>Genel Toplam</strong>ı okuyun. Dilerseniz özeti kopyalayın veya PDF olarak yazdırın.</li>
+    </ol>
+  </section>
+
+  <section class="card" id="alanlar">
+    <h2><span class="num">3</span>Alanların Açıklaması</h2>
+
+    <h3>Gemi Grostonu (GT)</h3>
+    <p>Geminin groston değeridir ve tüm hizmet ücretlerinin temelini oluşturur. Yalnızca pozitif
+       sayı kabul edilir. Ücret, ilk 1.000 GT için taban ücret; sonrasında her <strong>tam veya
+       başlanmış</strong> 1.000 GT için ilave birim ücret eklenerek bulunur (bkz. Hesaplama Kuralı).</p>
+
+    <h3>Gemi Tipi</h3>
+    <p>Simgeli bir <strong>açılır menüden</strong> seçilir. Seçilen tip, kılavuzluk/römorkaj/palamar
+       taban ve ilave birim ücretlerini belirler; ayrıca tehlikeli madde artırım oranını etkiler.
+       Açılışta varsayılan olarak <strong>Kabotaj Hattı</strong> seçilidir.</p>
+
+    <h3>Sefer Koşulları</h3>
+    <ul>
+      <li><strong>Tehlikeli Madde Taşıyor:</strong> İşaretlenirse gemi tipine göre artırım uygulanır
+          (Konteyner ve Yolcu/Ro-Pax/Ro-Ro/Araba Taşıyıcı için <span class="tag">%20</span>,
+          diğer tiplerde <span class="tag">%30</span>).</li>
+      <li><strong>Resmi Tatil / Hafta Sonu:</strong> İşaretlenirse <span class="tag">%50</span> artırım uygulanır.</li>
+    </ul>
+
+    <h3>Römorkör Adedi</h3>
+    <p>Römorkaj satırındaki <code>adet</code> menüsünden seçilir (0–9). Römorkaj ücreti, birim ücretin
+       seçilen römorkör sayısıyla çarpılmasıyla bulunur. Adet <code>0</code> seçilirse römorkaj ücreti
+       sıfır olur.</p>
+
+    <h3>Etap Seyri (onay kutusu)</h3>
+    <p>Etap Seyri satırındaki onay kutusu, bu kalemin genel toplama <strong>dahil edilip
+       edilmeyeceğini</strong> belirler. İşaret kaldırıldığında satır soluklaşır, net ücreti
+       <code>$0.00</code> gösterilir ve <strong>genel toplama yansımaz</strong>. Varsayılan: işaretli (dahil).</p>
+  </section>
+
+  <section class="card" id="kural">
+    <h2><span class="num">4</span>Hesaplama Kuralı</h2>
+    <p>Her hizmet kalemi için taban ücret hesaplama mantığı aynıdır. İlk 1.000 GT için <em>taban</em>
+       ücret uygulanır; 1.000 GT üzerindeki her <strong>tam veya başlanmış</strong> 1.000 GT dilimi için
+       <em>ilave</em> birim ücret eklenir:</p>
+    <div class="formula">Ücret = taban + ⌈(GT − 1000) / 1000⌉ × ilave        (GT &gt; 1000 ise)
+GT ≤ 1000 ise → Ücret = taban</div>
+    <p><code>⌈ ⌉</code> yukarı yuvarlama (tavan) işlemidir: örneğin 1.001 GT de, 2.000 GT de ilk
+       ilave dilimi tam sayar. Römorkaj kalemi bu ücretin ayrıca <strong>römorkör adedi</strong> ile
+       çarpılmasıyla bulunur.</p>
+  </section>
+
+  <section class="card" id="tarife">
+    <h2><span class="num">5</span>Tarife Verileri (USD)</h2>
+    <p>Aşağıdaki değerler; her gemi tipi ve hizmet için <strong>ilk 1.000 GT</strong> taban ücreti ile
+       <strong>ilave her 1.000 GT</strong> birim ücretidir.</p>
+
+    <h3>Kılavuzluk</h3>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Gemi Tipi</th><th>İlk 1.000 GT</th><th>İlave / 1.000 GT</th></tr></thead>
+      <tbody>
+        <tr><td>Kabotaj Hattı</td><td>71.87</td><td>25.67</td></tr>
+        <tr><td>Yolcu, Ro-Pax, Ro-Ro, Araba Taşıyıcı</td><td>119.10</td><td>47.23</td></tr>
+        <tr><td>Konteyner Gemileri</td><td>157.10</td><td>66.74</td></tr>
+        <tr><td>Diğer Gemiler</td><td>202.27</td><td>83.17</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Römorkaj (bir römorkör için birim ücret)</h3>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Gemi Tipi</th><th>İlk 1.000 GT</th><th>İlave / 1.000 GT</th></tr></thead>
+      <tbody>
+        <tr><td>Kabotaj Hattı</td><td>122.18</td><td>25.67</td></tr>
+        <tr><td>Yolcu, Ro-Pax, Ro-Ro, Araba Taşıyıcı</td><td>230.00</td><td>41.07</td></tr>
+        <tr><td>Konteyner Gemileri</td><td>307.01</td><td>57.50</td></tr>
+        <tr><td>Diğer Gemiler</td><td>382.99</td><td>71.87</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note-box">Römorkaj satırındaki değer, tek römorkör içindir. Genel toplama giren tutar,
+       bu birim ücretin seçilen <strong>römorkör adedi</strong> ile çarpımıdır.</p>
+
+    <h3>Palamar</h3>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Gemi Tipi</th><th>İlk 1.000 GT</th><th>İlave / 1.000 GT</th></tr></thead>
+      <tbody>
+        <tr><td>Kabotaj Hattı</td><td>11.29</td><td>6.16</td></tr>
+        <tr><td>Yolcu, Ro-Pax, Ro-Ro, Araba Taşıyıcı</td><td>22.58</td><td>11.29</td></tr>
+        <tr><td>Konteyner Gemileri</td><td>22.58</td><td>11.29</td></tr>
+        <tr><td>Diğer Gemiler</td><td>22.58</td><td>11.29</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Etap Seyri</h3>
+    <p>Etap seyri tüm gemi tipleri için aynıdır: <strong>ilk 1.000 GT</strong> için
+       <code>156.07</code>, <strong>ilave her 1.000 GT</strong> için <code>74.95</code>.</p>
+  </section>
+
+  <section class="card" id="artirim">
+    <h2><span class="num">6</span>Artırımlar (Kat Sayılar)</h2>
+    <p>Artırımlar <strong>çarpımsal</strong> uygulanır; yani her iki koşul da geçerliyse oranlar
+       toplanmaz, çarpanlar çarpılır.</p>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Koşul</th><th>Oran</th></tr></thead>
+      <tbody>
+        <tr><td>Tehlikeli madde — Konteyner ve Yolcu/Ro-Pax/Ro-Ro/Araba Taşıyıcı</td><td>%20</td></tr>
+        <tr><td>Tehlikeli madde — Diğer gemiler (Kabotaj ve Diğer)</td><td>%30</td></tr>
+        <tr><td>Resmi tatil / hafta sonu</td><td>%50</td></tr>
+      </tbody>
+    </table></div>
+    <div class="formula">Çarpan = (1 + tehlikeliOranı) × (1 + tatilOranı)
+Net = Taban × Çarpan            (Römorkaj için ayrıca × römorkör adedi)</div>
+    <p>Örnek: Diğer gemi tipinde hem tehlikeli madde hem tatil seçiliyse çarpan
+       <code>(1 + 0,30) × (1 + 0,50) = 1,95</code> olur; “Artırım” sütununda <code>+95%</code> görünür.</p>
+  </section>
+
+  <section class="card" id="sonuc">
+    <h2><span class="num">7</span>Sonuç Tablosu ve Genel Toplam</h2>
+    <p>Ücretlendirme Detayları tablosunda dört sütun bulunur:</p>
+    <ul>
+      <li><strong>Hizmet Türü:</strong> Kılavuzluk, Römorkaj (adet menüsüyle), Palamar, Etap Seyri (onay kutusuyla).</li>
+      <li><strong>Taban Ücret:</strong> Artırım uygulanmadan önceki, GT’ye göre hesaplanmış tutar.</li>
+      <li><strong>Artırım:</strong> Uygulanan toplam artırım yüzdesi (yoksa <code>0%</code>).</li>
+      <li><strong>Net Ücret:</strong> Artırım (ve Römorkaj için adet) uygulandıktan sonraki tutar.</li>
+    </ul>
+    <p><strong>Genel Toplam</strong>, tüm kalemlerin net ücretlerinin toplamıdır. Etap Seyri işaretli
+       değilse toplama katılmaz.</p>
+  </section>
+
+  <section class="card" id="butonlar">
+    <h2><span class="num">8</span>Butonlar ve Çıktı</h2>
+    <ul>
+      <li><strong>Özeti Kopyala:</strong> Girdileri ve kalem bazında sonuçları düz metin olarak panoya kopyalar; e-postaya veya nota yapıştırabilirsiniz.</li>
+      <li><strong>Yazdır / PDF:</strong> Tarayıcının yazdırma penceresini açar; buradan yazıcıya gönderebilir veya “PDF olarak kaydet” seçebilirsiniz. Yazdırmada arayüz sadeleştirilir.</li>
+      <li><strong>Sıfırla:</strong> Tüm alanları varsayılana döndürür (GT 1999, Kabotaj Hattı, römorkör 1 adet, Etap Seyri işaretli, artırımlar kapalı).</li>
+    </ul>
+  </section>
+
+  <section class="card" id="gorunum">
+    <h2><span class="num">9</span>Görünüm Ayarları</h2>
+    <ul>
+      <li><strong>Tema:</strong> Sağ üstteki düğmeyle açık/koyu tema arasında geçiş yapılır. Tercihiniz tarayıcıda hatırlanır.</li>
+      <li><strong>Yazı Boyutu:</strong> “Görünüm Ayarları” bölümündeki kaydırıcıyla 13–21px arasında ayarlanır.</li>
+      <li><strong>Yazı Rengi:</strong> Renk örneklerinden arayüz metin rengi seçilebilir.</li>
+    </ul>
+    <div class="note-box">Görünüm Ayarları bölümü, tek ekran düzenini korumak için telefon/tablette
+       gizlenir; masaüstünde her zaman görünür.</div>
+  </section>
+
+  <section class="card" id="mobil">
+    <h2><span class="num">10</span>Mobil / Tablet Kullanımı</h2>
+    <p>Telefon ve tablette arayüz, dikey kaydırma olmadan <strong>tek ekrana</strong> sığacak biçimde
+       orantılı olarak küçültülür. Sonuç tablosu kompakt biçimde gösterilir. Mevzuat ve tarife
+       PDF bağlantıları, hesaplayıcının altında küçük bir satır olarak erişilebilir kalır.</p>
+  </section>
+
+  <section class="card" id="ornek">
+    <h2><span class="num">11</span>Örnek Hesaplama</h2>
+    <p><strong>Senaryo:</strong> 1999 GT, Kabotaj Hattı, 1 römorkör, artırım yok, Etap Seyri dahil.</p>
+    <p>1999 GT için dilim: ilk 1.000 GT + 1 ilave dilim (999 GT “başlanmış” 1.000 sayılır) ⇒ <code>taban + 1 × ilave</code>.</p>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Hizmet</th><th>Hesap</th><th>Net (USD)</th></tr></thead>
+      <tbody>
+        <tr><td>Kılavuzluk</td><td>71.87 + 25.67</td><td>97.54</td></tr>
+        <tr><td>Römorkaj (×1)</td><td>(122.18 + 25.67) × 1</td><td>147.85</td></tr>
+        <tr><td>Palamar</td><td>11.29 + 6.16</td><td>17.45</td></tr>
+        <tr><td>Etap Seyri</td><td>156.07 + 74.95</td><td>231.02</td></tr>
+        <tr><td><strong>Genel Toplam</strong></td><td></td><td><strong>493.86</strong></td></tr>
+      </tbody>
+    </table></div>
+    <p>Etap Seyri onay kutusu kaldırılırsa genel toplam <code>262.84</code> olur (493.86 − 231.02).</p>
+  </section>
+
+  <section class="card" id="sss">
+    <h2><span class="num">12</span>Sık Sorulan Sorular</h2>
+    <h3>Sonuçlar neden anında değişiyor?</h3>
+    <p>Modül, her girdi değişikliğinde otomatik yeniden hesaplar; ayrı bir “hesapla” düğmesi yoktur.</p>
+    <h3>Küsuratlı GT nasıl işleniyor?</h3>
+    <p>1.000’in üzerindeki her başlanmış dilim tam sayılır (tavan yuvarlama). Örneğin 1.001 GT için 1 ilave dilim eklenir.</p>
+    <h3>İki artırım birlikte seçilirse ne olur?</h3>
+    <p>Çarpanlar çarpılır. Örneğin %30 ve %50 birlikte ⇒ 1,30 × 1,50 = 1,95 (yani +%95).</p>
+    <h3>Para birimi değiştirilebilir mi?</h3>
+    <p>Tarife USD cinsindendir; modül tutarları USD olarak gösterir.</p>
+    <h3>Sonuç resmî fatura yerine geçer mi?</h3>
+    <p>Hayır. Sonuçlar bilgilendirme amaçlıdır; yürürlükteki tarife ve mevzuat esastır.</p>
+  </section>
+
+  <section class="card" id="belgeler">
+    <h2><span class="num">13</span>Belgeler ve Yasal Dayanak</h2>
+    <p>Hesaplamalar aşağıdaki belgelere dayanır:</p>
+    <div class="btnrow">
+      <a href="docs/mevzuat-yonerge-2025.pdf" target="_blank" rel="noopener"><span aria-hidden="true">📄</span> Mevzuat Yönergesi (01.01.2025)</a>
+      <a href="docs/tarife-subat2026-ocak2027.pdf" target="_blank" rel="noopener"><span aria-hidden="true">📊</span> 2026/27 Tarifesi</a>
+    </div>
+    <p>Mevzuat: “Kılavuzluk, Römorkörcülük ve Palamar Hizmetlerinin Ücretleri Hakkında Yönerge”.
+       Tarife dönemi: 1 Şubat 2026 – 31 Ocak 2027.</p>
+  </section>
+
+  <section class="card" id="uyari">
+    <h2><span class="num">14</span>Yasal Uyarı</h2>
+    <div class="warn-box">Bu modüldeki sonuçlar <strong>bilgilendirme amaçlıdır</strong> ve resmî fatura
+       yerine geçmez. Herhangi bir uyuşmazlıkta <strong>yürürlükteki resmî tarife ve mevzuat</strong>
+       esas alınır. Verilerin güncelliğini ve doğruluğunu ilgili resmî kaynaklardan teyit ediniz.</div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Kılavuzluk, Römorkaj ve Palamar Hizmetleri Hesaplama Modülü</strong> · _mKp (2026)</p>
+</footer>
+
+</body>
+</html>
