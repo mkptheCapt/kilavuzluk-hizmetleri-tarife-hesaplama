@@ -350,9 +350,11 @@
     .actions{margin-top:10px;gap:8px}
     .btn{padding:9px 12px;font-size:.8rem;min-width:0}
 
-    /* Tek ekrana sığması için ikincil bölümleri gizle */
-    details.settings,.doc-links,.note{display:none}
-    footer{padding:0;margin:0}
+    /* Ayarlar ve not gizli; PDF butonları altta küçük bir satır olarak kalır */
+    details.settings,.note{display:none}
+    footer{padding:10px 12px 14px;margin:0}
+    .doc-links{margin:0 auto;max-width:none;gap:8px}
+    .doc-btn{flex:1 1 0;min-width:0;justify-content:center;padding:9px 10px;font-size:.78rem;box-shadow:none}
   }
 
   /* Kısa ekranlı cihazlar (ör. iPhone SE) için ekstra sıkıştırma */
