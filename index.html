@@ -82,12 +82,15 @@
     background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
     font-size:.8rem;letter-spacing:.02em;backdrop-filter:blur(6px);
   }
+  .hero-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
   .icon-btn{
     background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
     color:#f1f5f9;border-radius:10px;padding:8px 12px;font-size:.85rem;font-weight:600;
     cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:6px;
+    text-decoration:none;font-family:inherit;white-space:nowrap;
   }
-  .icon-btn:hover{background:rgba(255,255,255,.22)}
+  .icon-btn:hover{background:rgba(255,255,255,.22);color:#fff}
+  .icon-btn:focus-visible{outline:2px solid #bae6fd;outline-offset:2px}
 
   /* ---------- Yerleşim ---------- */
   .wrap{max-width:1120px;margin:-58px auto 0;padding:0 20px 48px;position:relative;z-index:2}
@@ -262,9 +265,19 @@
         </svg>
         <span>TURKUAZ KILAVUZLUK</span>
       </div>
-      <button class="icon-btn" id="themeBtn" type="button" aria-label="Tema değiştir">
-        <span id="themeIcon">🌙</span><span id="themeTxt">Koyu Tema</span>
-      </button>
+      <div class="hero-actions">
+        <a class="icon-btn" href="docs/mevzuat-yonerge-2025.pdf" target="_blank" rel="noopener"
+           title="Kılavuzluk, Römorkörcülük ve Palamar Hizmetlerinin Ücretleri Hakkında Yönerge (01.01.2025)">
+          <span aria-hidden="true">📄</span><span>Mevzuat Yönergesi</span>
+        </a>
+        <a class="icon-btn" href="docs/tarife-subat2026-ocak2027.pdf" target="_blank" rel="noopener"
+           title="Şubat 2026 – Ocak 2027 arası uygulanacak kılavuzluk ve römorkör tarifesi">
+          <span aria-hidden="true">📊</span><span>2026/27 Tarifesi</span>
+        </a>
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Tema değiştir">
+          <span id="themeIcon">🌙</span><span id="themeTxt">Koyu Tema</span>
+        </button>
+      </div>
     </div>
     <h1>Kılavuzluk, Römorkaj ve Palamar Hizmetleri<br>Ücret Hesaplama Modülü</h1>
     <p class="sub">Gemi grostonu ve sefer koşullarına göre anlık tarife hesaplaması</p>

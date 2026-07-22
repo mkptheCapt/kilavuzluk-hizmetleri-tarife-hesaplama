@@ -13,7 +13,13 @@ anlık ücret hesaplaması yapan, tek dosyalık (bağımlılıksız) web uygulam
 - Kılavuzluk, Römorkaj, Palamar ve Etap Seyri kalemleri + genel toplam
 - Özeti panoya kopyalama, yazdırma / PDF çıktısı
 - Açık ve koyu tema, ayarlanabilir yazı boyutu ve rengi
+- Mevzuat yönergesi ve yürürlükteki tarife PDF'lerine tek tıkla erişim
 - Mobil uyumlu, tek `index.html` dosyası — kurulum veya sunucu gerektirmez
+
+## Belgeler
+
+- [Kılavuzluk, Römorkörcülük ve Palamar Hizmetlerinin Ücretleri Hakkında Yönerge (01.01.2025)](docs/mevzuat-yonerge-2025.pdf)
+- [Şubat 2026 – Ocak 2027 arası uygulanacak kılavuzluk ve römorkör tarifesi](docs/tarife-subat2026-ocak2027.pdf)
 
 ## Hesaplama kuralı
 
